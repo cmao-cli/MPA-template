@@ -13,13 +13,13 @@ npm install
 ```
 
 ## 开发调试
-1. 运行
+### 1. 运行
 ```js
 npm run start
 ```
 该命令会执行gulp start task，具体task实现请参考`@mlz/webui-gulp`
 
-2. 添加页面
+### 2. 添加页面
 分别在服务器端`www/src/routes/[routeName]`和客户端`src/[routeName]`创建对应的路由文件夹，参照模版中的`www/src/routes/index`和`src/index`。
 
 **www/src/routes/index**
