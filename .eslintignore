@@ -1,0 +1,7 @@
+/.build-cache/
+/build/
+/www/build/
+/bin/
+**/_vendor/**/*
+/*.js
+/*.json

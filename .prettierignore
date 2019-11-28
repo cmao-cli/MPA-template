@@ -1,0 +1,10 @@
+/.build-cache/
+/build/
+/flow-typed/npm/
+*.inc.html
+*.tpl.html
+*.md
+*.yml
+**/_vendor/**/*
+/*.js
+/*.json

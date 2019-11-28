@@ -1,0 +1,20 @@
+{
+  "viewportWidth": 375,
+  "serverPort": 5000,
+  "debugPort": 9229,
+  "runtime": {
+    "cdnBase": "",
+    "apiBase": {
+      "host": "//127.0.0.1:4081/host/__proxy__",
+      "marketing": "//127.0.0.1:4081/marketing/__proxy__",
+      "rocketCourse": "//127.0.0.1:4081/rocketCourse/__proxy__",
+      "introduce": "//127.0.0.1:4081/introduce/__proxy__"
+    },
+    "hostBase": {
+      "mobile": ""
+    },
+    "wechat": {
+      "appid": ""
+    }
+  }
+}

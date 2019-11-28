@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "target": "ESNext",
+    "lib": ["esnext"]
+  },
+  "paths": {
+    "*": [
+      "./types/*"
+    ]
+  },
+  "include": [
+    "./src/**/*",
+    "./types"
+  ]
+}

@@ -1,0 +1,44 @@
+@import '../../styles/mixins.scss';
+
+.dialog-component {
+  overflow: hidden;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+  background-color: rgba(0, 0, 0, .4);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  &.active {
+    display: flex;
+  }
+  > .dialog-wrapper {
+    width: 340px;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    position: relative;
+    transform: translateY(400px);
+    transition: all .3s;
+    &.active {
+      transform: translateY(0);
+    }
+    > .dialog-close-btn {
+      @include no-apperance-button();
+      width: 30px;
+      height: 30px;
+      background: url(/common/components/dialog/dialog-close-btn.png) 8px 8px no-repeat;
+      background-size: 14px;
+      position: absolute;
+      right: 5px;
+      top: 5px;
+    }
+  }
+}
+
+body.dialog-active {
+  overflow-y: hidden;
+}

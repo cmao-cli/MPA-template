@@ -1,0 +1,13 @@
+@mixin clearfix() {
+  &::after {
+    clear: both;
+    content: "";
+    display: table;
+  }
+}
+
+@mixin no-apperance-button {
+  appearance: none;
+  background: transparent;
+  border: none;
+}
