@@ -22,7 +22,33 @@ npm install
 ```js
 npm run start
 ```
-该命令会执行gulp start task，具体task实现请参考`@mlz/webui-gulp`
+该命令会执行gulp start task：该命令是在gulpfile.js中从@mlz/webui-gulp中注入的命令。
+
+start之后会顺序执行以下的gulp任务包括：
+clean:build：删除当前目录下的build文件
+copy：将所有的静态资源文件复制到根目录下的build文件夹下
+bundle：包括了两个任务分别是：
+bundle:html：处理客户端的所有的html文件包括处理html文件中css，sass，js引用等
+bundle:ts：将客户端的ts文件打包到build文件夹下
+server:ts：编译服务器端的ts文件到www/build目录
+server:tpl：将.html模版文件编译到www/build/tpl/路径下
+clean:bundle：清除build下无用所有html文件
+
+最终应用的运行结构目录为：www/build
+```js
+├── app.js
+├── config.js
+├── routes
+│   └── index
+│       └── index.js
+└── tpl
+    └── index
+        ├── index.html.js
+        └── templates
+            └── a.tpl.html.js
+
+```
+app.js中启动服务，加载routes下的所有路由文件，在路由处理中间件中调用编译出的模版文件的`render`方法传入变量。
 
 ### 2. 项目结构
 ```js
@@ -58,7 +84,7 @@ npm run start
 │   ├── closest.d.ts
 │   └── global.d.ts
 └── www //服务端
-    ├── build //服务端编译后的文件夹
+    ├── build //服务端编译后生成的文件夹，最终项目运行的文件夹
     │   ├── abtest.js
     │   ├── app.js
     │   ├── config.js
@@ -74,10 +100,10 @@ npm run start
         └── global.d.ts
 ```
 
-### 3. 添加页面
+### 4. 如何添加页面
 分别在服务器端`www/src/routes/[routeName]`和客户端`src/[routeName]`创建对应的路由文件夹，参照模版中的`www/src/routes/index`和`src/index`。
 
-**www/src/routes/index**
+**服务端：www/src/routes/index**
 ```ts
 import {Request, Response} from 'express';
 
@@ -90,7 +116,7 @@ export = [function (req: Request, res: Response): void {
 }];
 ```
 
-**src/index**
+**客户端： src/index**
 目录结构：
 ```js
 └── index
