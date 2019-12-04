@@ -22,7 +22,7 @@ npm install
 ```js
 npm run start
 ```
-该命令会执行gulp start task：该命令是在gulpfile.js中从@mlz/webui-gulp中注入的命令。
+该命令会执行gulp start task：该命令是在gulpfile.js中从[@mlz/webui-gulp](https://github.com/juicecube/webui-gulp)中注入的命令。
 
 start之后会顺序执行以下的gulp任务包括：
   1. clean:build：删除当前目录下的build文件
@@ -31,7 +31,7 @@ start之后会顺序执行以下的gulp任务包括：
   4. bundle:html：处理客户端的所有的html文件包括处理html文件中css，sass，js引用等
   5. bundle:ts：将客户端的ts文件打包到build文件夹下
   6. server:ts：编译服务器端的ts文件到www/build目录
-  7. server:tpl：将.html模版文件编译到www/build/tpl/路径下
+  7. server:tpl：使用[gulp-mt2amd](https://github.com/webyom/gulp-mt2amd)将.html模版文件编译到www/build/tpl/路径下
   8. clean:bundle：清除build下无用所有html文件
 
 最终应用的运行结构目录为：www/build
