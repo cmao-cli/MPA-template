@@ -1,7 +1,7 @@
 import path from 'path';
 
 const ENV = process.env.NODE_ENV || 'local';
-const config = (function (): Record<string, any> {
+const config = (function():Record<string, any> {
   let defaultConf;
   let config;
   try {
@@ -16,9 +16,9 @@ const config = (function (): Record<string, any> {
     }
   }
   return Object.assign(
-    {ENV},
+    { ENV },
     defaultConf,
-    config
+    config,
   );
 })();
 

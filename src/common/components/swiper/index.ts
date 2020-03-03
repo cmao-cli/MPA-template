@@ -1,31 +1,31 @@
-import {Component} from '../../scripts/base/component';
+import { Component } from '../../scripts/base/component';
 
-type swiperCallback = (i: number) => void;
+type swiperCallback = (i:number) => void;
 
 export class SwiperComponent extends Component {
-  private wrapper: HTMLElement;
-  private touchStartListener: EventListener = this.onTouchStart.bind(this);
-  private touchMoveListener: EventListener = this.onTouchMove.bind(this);
-  private touchEndListener: EventListener = this.onTouchEnd.bind(this);
-  private touchCancelListener: EventListener = this.onTouchCancel.bind(this);
+  private wrapper:HTMLElement;
+  private touchStartListener:EventListener = this.onTouchStart.bind(this);
+  private touchMoveListener:EventListener = this.onTouchMove.bind(this);
+  private touchEndListener:EventListener = this.onTouchEnd.bind(this);
+  private touchCancelListener:EventListener = this.onTouchCancel.bind(this);
   private touching = false;
-  private clientWidth: number;
-  private slidesAmount: number;
-  private startPageX: number;
-  private startPageY: number;
-  private lastPageX: number;
-  private lastPageY: number;
-  private startTime: number;
-  private startTranslateX: number;
+  private clientWidth:number;
+  private slidesAmount:number;
+  private startPageX:number;
+  private startPageY:number;
+  private lastPageX:number;
+  private lastPageY:number;
+  private startTime:number;
+  private startTranslateX:number;
   private translateX = 0;
   private index = 0;
 
-  constructor(selector: string, private startSwipeCb?: swiperCallback | null, private endSwipeCb?: swiperCallback | null) {
+  constructor(selector:string, private startSwipeCb?:swiperCallback | null, private endSwipeCb?:swiperCallback | null) {
     super(selector);
     this.wrapper = this.$('.swiper-wrapper') as HTMLElement;
   }
 
-  destroy(): void {
+  destroy():void {
     this.container.removeEventListener('touchstart', this.touchStartListener);
     this.container.removeEventListener('touchmove', this.touchMoveListener);
     this.container.removeEventListener('touchend', this.touchEndListener);
@@ -33,7 +33,7 @@ export class SwiperComponent extends Component {
     super.destroy();
   }
 
-  private finishTouch(): void {
+  private finishTouch():void {
     this.touching = false;
     let i = -this.translateX / this.clientWidth;
     const duration = new Date().getTime() - this.startTime;
@@ -56,7 +56,7 @@ export class SwiperComponent extends Component {
     this.slideTo(i);
   }
 
-  private onTouchStart(evt: TouchEvent): void {
+  private onTouchStart(evt:TouchEvent):void {
     if (this.touching) {
       this.finishTouch();
       return;
@@ -73,13 +73,13 @@ export class SwiperComponent extends Component {
     this.startSwipeCb && this.startSwipeCb(this.index);
   }
 
-  private onTouchMove(evt: TouchEvent): void {
+  private onTouchMove(evt:TouchEvent):void {
     const touch = evt.targetTouches[0];
     const pageX = touch.pageX;
     const pageY = touch.pageY;
     let moveX = pageX - this.startPageX;
     const moveY = pageY - this.startPageY;
-    if (!this.touching || this.startPageX === this.lastPageX && this.startPageY === this.lastPageY &&  Math.abs(moveY) > Math.abs(moveX)) {
+    if (!this.touching || this.startPageX === this.lastPageX && this.startPageY === this.lastPageY && Math.abs(moveY) > Math.abs(moveX)) {
       this.finishTouch();
       return;
     }
@@ -94,23 +94,23 @@ export class SwiperComponent extends Component {
     this.translateX = translateX;
   }
 
-  private onTouchEnd(): void {
+  private onTouchEnd():void {
     this.finishTouch();
   }
 
-  private onTouchCancel(): void {
+  private onTouchCancel():void {
     this.finishTouch();
   }
 
-  get slides(): number {
+  get slides():number {
     return this.slidesAmount;
   }
 
-  get currentIndex(): number {
+  get currentIndex():number {
     return this.index;
   }
 
-  slideTo(i: number): void {
+  slideTo(i:number):void {
     i = Math.floor(i);
     if (i < 0 || i >= this.slidesAmount) {
       return;
@@ -123,7 +123,7 @@ export class SwiperComponent extends Component {
     this.endSwipeCb && this.endSwipeCb(i);
   }
 
-  init(): SwiperComponent {
+  init():SwiperComponent {
     super.init();
     this.clientWidth = this.container.clientWidth;
     this.slidesAmount = this.$$('.swiper-slide').length;

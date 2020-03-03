@@ -1,7 +1,7 @@
-import {G} from './global';
+import { G } from './global';
 
 interface XResponse extends Response {
-  data: any | void;
+  data:any | void;
 }
 
 export enum ApiHost {
@@ -9,10 +9,10 @@ export enum ApiHost {
 }
 
 class API {
-  public request: Function;
+  public request:Function;
   constructor(apiHostName = 'host') {
-    this.request = (url: string, config?: any): Promise<XResponse> => {
-      let response: XResponse;
+    this.request = (url:string, config?:any):Promise<XResponse> => {
+      let response:XResponse;
       return new Promise((resolve, reject) => {
         let baseHost = '';
         if (!(/^http(s)?\/\//).test(url)) {
@@ -24,7 +24,7 @@ class API {
             'content-type': 'application/json;charset=UTF-8',
           },
           ...config,
-        }).then(res => {
+        }).then((res) => {
           response = res as XResponse;
           return res.text();
         }).then((data) => {
@@ -37,11 +37,11 @@ class API {
     };
   }
 
-  get(url: string, config?: any): Promise<XResponse> {
+  get(url:string, config?:any):Promise<XResponse> {
     return this.request(url, config);
   }
 
-  post(url: string, data: Record<string, string>, config: any = {}): Promise<XResponse> {
+  post(url:string, data:Record<string, string>, config:any = {}):Promise<XResponse> {
     return this.request(url, {
       method: 'post',
       body: JSON.stringify(data),

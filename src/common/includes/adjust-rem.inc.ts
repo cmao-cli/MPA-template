@@ -2,15 +2,15 @@
  * REM等比适配多分辨率
  * 设计稿以750为准
  */
-(function (doc, win): void {
+(function(doc, win):void {
   const docEl = doc.documentElement,
     resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
-    recalc = function (): void {
+    recalc = function():void {
       const clientWidth = docEl.clientWidth;
       if (!clientWidth) {
         return;
       }
-      docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+      docEl.style.fontSize = `${100 * (clientWidth / 750) }px`;
     };
 
   if (!doc.addEventListener) {
