@@ -12,7 +12,7 @@ yuumi init mpa-test
 git clone git@github.com:cmao-cli/MPA-template.git
 ```
 
-## 安装依赖
+## 安装依赖(node-11.13.x)
 ```js
 npm install
 ```
