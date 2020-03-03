@@ -10,6 +10,7 @@
     "build:docker": "NODE_ENV=$front_env gulp build && env-status --gen",
     "start:docker": "NODE_ENV=$front_env node www/build/app.js",
     "mockup-server": "mockup-server -p 4081",
+    "tsc-check": "tsc --project tsconfig.json --outDir build/.tsc-check/ && tsc --project www/tsconfig.json --outDir www/build/.tsc-check/",
     "stylelint": "stylelint src/**/*.scss",
     "stylelint:fix": "stylelint src/**/*.scss --fix",
     "eslint": "eslint src/**/*.ts types/**/*.ts types/*.ts www/src/**/*.ts www/src/*.ts www/types/**/*.ts www/types/*.ts",
@@ -19,7 +20,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn eslint && yarn stylelint && ROLLUP_TYPESCRIPT_CHECK=1 gulp bundle:ts"
+      "pre-commit": "yarn eslint && yarn stylelint && npm run tsc-check"
     }
   },
   "dependencies": {
@@ -33,7 +34,7 @@
   },
   "devDependencies": {
     "@babel/preset-env": "^7.6.3",
-    "@mlz/webui-gulp": "0.28.0",
+    "@mlz/webui-gulp": "^0.54.0",
     "@types/core-js": "^2.5.2",
     "@types/express": "^4.17.2",
     "@types/lodash-es": "^4.17.3",
