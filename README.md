@@ -19,7 +19,9 @@ npm install
 
 ## 开发调试
 ### 1. 运行
+
 ```js
+cp config/local.json.example config/local.json
 npm run start
 ```
 该命令会执行gulp start task：该命令是在gulpfile.js中从[@mlz/webui-gulp](https://github.com/juicecube/webui-gulp)中注入的命令。
