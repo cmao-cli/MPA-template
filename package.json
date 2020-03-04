@@ -20,7 +20,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn eslint && yarn stylelint && npm run tsc-check"
+      "pre-commit": "yarn eslint && yarn stylelint"
     }
   },
   "dependencies": {
@@ -30,6 +30,8 @@
     "core-js": "^3.3.4",
     "express": "^4.17.1",
     "lodash-es": "^4.17.15",
+    "preact": "^10.3.3",
+    "preact-router": "^3.2.1",
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {

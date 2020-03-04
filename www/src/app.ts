@@ -37,6 +37,7 @@ app.use(cookieParser());
 
 (function(base:string):void {
   for (const route of fs.readdirSync(base)) {
+    console.log(route);
     app.use(`/${route}`, require(path.join(base, route)));
   }
 })(path.join(__dirname, './routes/'));

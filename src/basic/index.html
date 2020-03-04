@@ -1,0 +1,17 @@
+<!-- extend "../common/layouts/base.layout.html" -->
+
+<!-- section "content" -->
+  <!-- 引入css文件 -->
+  <!-- include "./styles/index.scss" -->
+  <%=$injectData('injectString', $data.injectString)%>
+  <div class="basic">
+    <div class="tpl"></div>
+    <div class="injectData"><%=$data.injectString%></div>
+  </div>
+  
+<!-- /section -->
+
+<!-- 引入执行脚本 -->
+<!-- section "script" -->
+  <script id="main-script" type="text/template" src="/basic/scripts/main.js"></script>
+<!-- /section -->
