@@ -1,4 +1,4 @@
-const loadMap:{[type:string]:Promise<any>} = {};
+const loadMap:{ [type:string]:Promise<any> } = {};
 
 export function loadScript(src:string, varName?:string):Promise<any> {
   if (loadMap[src]) {

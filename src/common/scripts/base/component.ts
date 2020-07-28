@@ -1,3 +1,4 @@
+import { G } from './global';
 import { $ } from './dom';
 
 export class Component {
@@ -9,6 +10,7 @@ export class Component {
     if (!this.container) {
       throw new Error(`Selector "${selector}" invalid!`);
     }
+
     if (G.__COMPONENTS__[selector]) {
       throw new Error(`Component for selector "${selector}" allready exist!`);
     }
@@ -34,7 +36,8 @@ export class Component {
     if (!this.mainTpl) {
       return;
     }
-    this.container.innerHTML = this.mainTpl.render($data, $opt)
+    this.container.innerHTML = this.mainTpl
+      .render($data, $opt)
       .replace(/ data-(on\w+?)="this./g, ` $1="G.__COMPONENTS__['${this.selector}'].`);
   }
 
@@ -42,6 +45,7 @@ export class Component {
     if (this.inited) {
       return;
     }
+
     if (this.container) {
       const state = this.getState();
       this.render();

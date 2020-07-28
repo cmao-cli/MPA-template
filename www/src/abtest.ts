@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 export = function(context:{req:Request; res:Response}, ...testname:string[]):void {
   const { req, res } = context;
   let ab:string;
-  if (req.query.abtest) {
+  if (req.query.abtest && typeof req.query.abtest === 'string') {
     ab = req.query.abtest;
   } else if (req.cookies.abtest) {
     ab = req.cookies.abtest;

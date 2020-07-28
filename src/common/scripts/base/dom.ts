@@ -1,6 +1,7 @@
 import closestx from 'closest';
 
 export const $ = document.querySelector.bind(document);
+
 export const $$ = document.querySelectorAll.bind(document);
 
 export function closest(element:Element | EventTarget, selector:string, checkYoSelf?:boolean):Element | null {
@@ -16,7 +17,7 @@ export function addClass(el:Element, className:string):void {
     return;
   }
   const oldClassName = el.className;
-  el.className = oldClassName ? (`${oldClassName } ${ className}`) : className;
+  el.className = oldClassName ? `${oldClassName } ${ className}` : className;
 }
 
 export function removeClass(el:Element, className:string):void {
@@ -32,4 +33,3 @@ export function removeClass(el:Element, className:string):void {
     el.className = cs.join(' ');
   }
 }
-

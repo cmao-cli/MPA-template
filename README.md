@@ -101,8 +101,12 @@ app.js中启动服务，加载routes下的所有路由文件，在路由处理�
     └── types
         └── global.d.ts
 ```
+---
+## 开发
 
-### 4. 如何添加页面
+> 完整示例：项目内有一个包含了表单组件、轮播组件、弹框组件及埋点功能的完整示例（文件路径：`src/v7`），可以启动项目后访问/v7路径查看效果
+
+#### 如何添加页面
 分别在服务器端`www/src/routes/[routeName]`和客户端`src/[routeName]`创建对应的路由文件夹，参照模版中的`www/src/routes/index`和`src/index`。
 
 **服务端：www/src/routes/index**
@@ -132,13 +136,84 @@ export = [function (req: Request, res: Response): void {
     └── templates
 ```
 
+#### 添加子组件
+在`src/[routeName]/templates`目录下新建带`.tpl.html`后缀的文件（如dialog.tpl.html）,然后可以开始写html，可从外部传入数据控制元素
+```
+// src/[routeName]/templates/xxx.tpl.html
+
+<p><%=$data.text%></p>
+```
+在`src/[routeName]/index.html`里引入子组件并传递数据
+```
+ <%=require('./templates/xxx.tpl.html').render({
+  text: 'text'
+})%>
+```
+> 子组件只有html结构，样式写在页面样式内(`src/[routeName]/styles/index.scss`)
+
+#### 服务端传递数据（客户端模板使用）
+服务端文件中`www/src/routes/[routeName]/index.ts`，在模板render函数中填入数据
+```javascript
+render({
+  testData: 'test'
+})
+```
+
+客户端页面文件中`src/[routeName]/index.html`可用模板语句读取
+```
+<!-- section "content" -->
+  ...
+  <%=$data.testData%>
+  ...
+<!-- /section -->
+```
+
+
+#### 服务端传递数据（客户端js使用）
+
+服务端render填入数据
+```javascript
+render({
+  serverTime: Date.now(),
+})
+```
+
+客户端页面文件`src/[routeName]/index.html`填入插入相应模板语句（相当于`<script>window.serverTime=xxx</script>`）
+```
+<!-- section "content" -->
+  ...
+  <%=$injectData('serverTime', $data.serverTime)%>
+  ...
+<!-- /section -->
+```
+scripts/main.js中可通过全局对象调用该数据`G.SERVER_INJECTED_DATA.serverTime`
+
+
+#### script脚本引入
+在客户端页面中`src/[routeName]/index.html`使用带`type="text/template"`属性的script标签来引入js，`data-async`属性会异步加载异步执行
+```
+<!-- section "script" -->
+<script data-async type="text/template" src="/common/scripts/stat/main.js"></script>
+...
+<!-- /section -->
+```
+若要确保在js加载完后执行可以在script标签增加模块名`data-entry="xxx"`
+```
+<!-- section "script" -->
+<script data-async data-entry="caMain" type="text/template" src="/common/scripts/ca/main.js"></script>
+<!-- /section -->
+```
+客户端会产生一个promise,可以通过全局对象`G.ASYNC_SCRIPT_PROMISE['xxx']`对应模块返回一个promise在回调中执行后续代码。
+
+---- 
+
 ## 打包构建
 ```js
 npm run build
 // 执行gulp build命令生成build文件夹和www/build文件夹
 ```
 
-## 正式环境运行（docker中的运行流程）
+## 正式环境运行（docker中的运行流程，自带Dockerfile，可直接使用）
 1. 传入环境变量并构建`build:docker`: `"NODE_ENV=$front_env gulp build && env-status --gen",` 
 2. 上传静态资源到七牛云：`RUN ./bin/qn.sh`
 3. 启动node服务`start:docker`: `NODE_ENV=$front_env node www/build/app.js`

@@ -1,0 +1,116 @@
+<!-- extend "~/@mlz/webui-gulp/layouts/base.layout.html" -->
+
+<!-- section "head" -->
+  <link rel="preload" href="/v7/assets/part-1-bg.jpg" as="image" />
+<!-- /section -->
+
+<!-- section "content" -->
+  <!-- include "/v7/scripts/main.css" if="%{{ENV === 'local' ? 'no' : 'yes'}}%" -->
+  <%if ('%{{ENV}}%' === 'local') {%>
+    <link id="main-style" rel="stylesheet" href="/v7/scripts/main.css" />
+  <%}%>
+
+  <%=$injectData('serverTime', $data.serverTime)%>
+  <div id="page-containner">
+    <%{ const part = 'part1'%>
+    <div class="part-1" data-buried="<%=part%>" data-exposure="<%=part%>">
+      <div class="bg top_title" data-buried="<%=part%>_图片"></div>
+      <div class="form" data-buried="<%=part%>_表单容器">
+        <h3 data-buried="<%=part%>_表单标题"><span>免费领取</span> 价值258元专业试听课</h3>
+        <div id="register-form-component-1" class="register-form-component">
+          <%=$injectData('refferalInfo', $data.referral)%>
+          <%=require('../common/components/register-form/index.tpl.html').render({part: part, ...$data.referral, isRegister: $data.isRegister})%>
+        </div>
+      </div>
+    </div>
+    <%}%>
+
+    <%{ const part = 'part2'%>
+    <div class="part-2" data-buried="<%=part%>" data-exposure="<%=part%>">
+      <h3 data-buried="<%=part%>_标题" data-src="/v7/assets/part-2-title-bg.png">为什么要学编程 ？</h3>
+      <div class="bg" data-src="/v7/assets/part-2-bg.jpg"></div>
+    </div>
+    <%}%>
+
+    <%{ const part = 'part3'%>
+    <div class="part-3" data-src="/v7/assets/part-3-bg.jpg" data-buried="<%=part%>_图片" data-exposure="<%=part%>"></div>
+    <%}%>
+
+    <%{ const part = 'part4'%>
+    <div class="part-4" data-exposure="<%=part%>" data-src="/v7/assets/part-4-bg.jpg">
+      <%=require('./templates/part-4.tpl.html').render({
+        slides: [
+          {name: '定制化教学', img: '/v7/assets/part-4-slide-1.png'},
+          {name: '启发式课堂', img: '/v7/assets/part-4-slide-2.png'},
+          {name: '强大的师资', img: '/v7/assets/part-4-slide-3.png'},
+          {name: '优秀的品牌', img: '/v7/assets/part-4-slide-4.png'}
+        ],
+        part: part
+      })%>
+    </div>
+    <%}%>
+
+    <%{ const part = 'part5'%>
+    <div class="part-5" data-exposure="<%=part%>">
+      <%=require('./templates/part-5.tpl.html').render({
+        slides: [
+          {name: '兴趣编程', desc: '图形化编程兴趣课', grade: '5年级及以下', img: '/v7/assets/part-5-slide-1.jpg'},
+          {name: '代码编程', desc: 'Python代码编程课', grade: '6年级及以上', img: '/v7/assets/part-5-slide-2.jpg'},
+          {name: '硬件编程', desc: '硬件编程课', grade: '4-5年级', img: '/v7/assets/part-5-slide-3.jpg'},
+          {name: '数学编程', desc: '数学编程课', grade: '3-6年级', img: '/v7/assets/part-5-slide-4.jpg'}
+        ],
+        part: part
+      })%>
+    </div>
+    <%}%>
+
+    <%{ const part = 'part6'%>
+    <div class="part-6 <%=$data.isRefferal ? 'refferal' : ''%>" data-buried="<%=part%>" data-exposure="<%=part%>" data-src="/v7/assets/part-6-bg.png">
+      <div class="form" data-buried="<%=part%>_表单容器">
+        <h3 data-buried="<%=part%>_标题"><span>免费领取</span> 价值258元专业试听课</h3>
+        <div id="register-form-component-2" class="register-form-component"></div>
+      </div>
+    </div>
+    <%}%>
+
+    <%{ const part = 'part7'%>
+    <div class="part-7" data-exposure="<%=part%>">
+      <img data-src="/v7/assets/part-7-bg.jpg" data-buried="<%=part%>_图片"/>
+    </div>
+    <%}%>
+
+    <%{ const part = '底部悬浮'%>
+    <div class="bottom-float">
+      <button data-buried="<%=part%>_按钮_左">免费预约专业试听课</button>
+      <button data-buried="<%=part%>_按钮_右" data-enquiry>获取课程价格</button>
+    </div>
+    <%}%>
+
+    <%{ const part = '注册弹窗'%>
+    <div id="dialog-component-1" class="dialog-component dialog-form" data-buried="<%= part%>_表单容器">
+      <div class="dialog-wrapper">
+        <button class="dialog-close-btn" data-buried="<%=part%>_关闭按钮"></button>
+        <div class="dialog-content"></div>
+      </div>
+    </div>
+    <%}%>
+
+    <%{ const part = '成功弹窗'%>
+    <div id="dialog-component-2" class="dialog-component success-tips">
+      <div class="dialog-wrapper">
+        <button class="dialog-close-btn" data-buried="<%=part%>_关闭按钮"></button>
+        <img src="/v7/assets/success.png" alt="领取成功" data-buried="<%=part%>_图片">
+        <h1 class="success-tips" data-buried="<%=part%>_文本_提示">恭喜你领取成功</h1>
+        <p class="desc" data-buried="<%=part%>_文本_描述">课程顾问将在1个工作日内与你联系<br>请保持手机畅通</p>
+      </div>
+    </div>
+    <%}%>
+  </div>
+<!-- /section -->
+
+<!-- section "script" -->
+  <!-- include "/v7/scripts/main.js" if="%{{ENV === 'production' || ENV === 'staging' ? 'yes' : 'no'}}%" -->
+  <script id="main-script" type="text/template" src="/v7/scripts/main.js"></script>
+  <script data-async data-entry="caMain" type="text/template" src="/common/scripts/ca/main.js"></script>
+  <script data-async type="text/template" src="/common/scripts/stat/main.js"></script>
+<!-- /section -->

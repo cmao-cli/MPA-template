@@ -1,0 +1,102 @@
+<%if ($data.avatar && $data.nickname && $data.part == 'part1') {%>
+  <% if (!$data.isReferralRegiste) {%> 
+    <img class="refferal-avatar" src="<%= $data.avatar %>" data-buried="<%=$data.part%>_转介绍头像"/>
+  <%}%>
+  <% if ($data.isReferralRegiste) {%> 
+    <div class="refferal-avatar referral-registe" data-buried="<%=$data.part%>_转介绍头像">
+      <img src="<%=$data.avatar%>" data-buried="<%=$data.part%>_转介绍头像"/>>
+    </div>
+  <%}%>
+  <% if (!$data.isReferralRegiste) {%> 
+    <p class="refferal-nickname" data-buried="<%=$data.part%>_转介绍昵称"><%= $data.nickname %></p>
+  <%}%>
+<%}%>
+<%if ($data.userId && /part1|part6/.test($data.part)) {%>
+  <% if (!$data.isReferralRegiste) {%> 
+    <p class="refferal-desc" data-buried="<%=$data.part%>_转介绍标题">送你一节价值258元课程包</p>
+  <%}%>
+  <% if ($data.isReferralRegiste) {%> 
+    <p class="refferal-desc is-referral-registe" data-buried="<%=$data.part%>_转介绍昵称_标题"><%= $data.nickname %><br/><span>送你一份亲友专属编程思维课大礼包</span></p>
+  <%}%>
+<%}%>
+<% if ($data.isReferralRegiste) {%> 
+  <div class="referral-registe award">
+    <div class="award-item">
+      <div class="img"></div>
+      <div class="count">258元</div>
+      <div class="name">编程课</div>
+    </div>
+    <div class="award-item">
+      <div class="img"></div>
+      <div class="count">1个</div>
+      <div class="name">创意作品</div>
+    </div>
+    <div class="award-item">
+      <div class="img"></div>
+      <div class="count">1份</div>
+      <div class="name">能力报告</div>
+    </div>
+    <div class="award-item">
+      <div class="img"></div>
+      <div class="count">1份</div>
+      <div class="name">学习资料</div>
+    </div>
+  </div>
+<%}%>
+<div class="msgbox"></div>
+<div class="mobile-section <%=($data.page == 'v9' && $data.part == 'part1') || ($data.page == 'gongyi' && $data.part == 'part1') ? 'no-require' : ''%>">
+  <input class="mobile-input" type="tel" maxlength="11" placeholder="<%=$data.phonePlaceholder || '输入手机号码'%>" data-onkeydown="this.checkNumberInput(event)"  data-buried="<%=$data.part%>_输入框_手机号"/>
+  <span class="hidden">请填写正确的手机号</span>
+</div>
+<div class="code-section <%=$data.page == 'v9' && $data.part == 'part1' ? 'hide' : ''%> <%=$data.page == 'gongyi' && $data.part == 'part1' ? 'no-require' : '' %>">
+  <input class="code-input" type="tel" maxlength="6" placeholder="<%=$data.codePlaceholder || '输入验证码'%>" data-onkeydown="this.checkNumberInput(event)" data-buried="<%=$data.part%>_输入框_验证码"/>
+  <button data-onclick="this.onGetCodeBtnClick(event)" data-buried="<%=$data.part%>_按钮_获取验证码">获取验证码</button>
+</div>
+<%if ($data.page == 'cpa') {%>
+  <div class="nickname-section">
+    <input class="nickname-input" type="text" maxlength="20" placeholder="输入孩子昵称" data-buried="<%=$data.part%>_输入框_昵称"/>
+  </div>
+  <div class="age-section">
+    <select class="age-select" placeholder="选择孩子年龄" data-buried="<%=$data.part%>_选择框_年龄" data-onchange="this.checkAgeSelect(event)">
+      <option value="0" selected disabled>请选择孩子年龄</option>
+      <option value="4">4岁及以下</option>
+      <option value="5">5岁</option>
+      <option value="6">6岁</option>
+      <option value="7">7岁</option>
+      <option value="8">8岁</option>
+      <option value="9">9岁</option>
+      <option value="10">10岁</option>
+      <option value="11">11岁</option>
+      <option value="12">12岁</option>
+      <option value="13">13岁</option>
+      <option value="14">14岁</option>
+      <option value="15">15岁</option>
+      <option value="16">16岁及以上</option>
+    </select>
+  </div>
+<%}%>
+<% if ($data.page === 'gongyi') {%>
+  <button class="btn-submit <%=$data.part === '注册弹窗' ? 'gongyi_pop' : 'gongyi' %>" data-onclick="this.onSubmitBtnClick(event)" data-buried="<%=$data.part%>_按钮_[提交]"></button>
+  <%} else { %>
+    <button class="btn-submit" data-onclick="this.onSubmitBtnClick(event)" data-buried="<%=$data.part%>_按钮_[提交]"><%=$data.submitBtnLabel || '免费领取'%></button>
+<%}%>
+<% if ($data.isRegister) { %>
+    <div class="agreement-section check-b">
+      <label>
+        <span class="checked">
+          <input type="checkbox" data-onchange="this.onCheckboxChange(event)" checked  data-buried="<%=$data.part%>_复选框_协议"/>
+        </span>
+      </label>
+      <a href="https://static-platform.codemao.cn/agreements/term_of_service.html" data-buried="<%=$data.part%>_链接_协议">编程猫保障每位学员信息安全</a>
+    </div>
+  <%} else {%>
+    <div class="agreement-section <%=$data.page == 'gongyi' && $data.part == '注册弹窗' ? 'gongyi_pop' : '' %>">
+      <label>
+        <span class="checked">
+          <input type="checkbox" data-onchange="this.onCheckboxChange(event)" checked  data-buried="<%=$data.part%>_复选框_协议"/>
+        </span>
+        我已经阅读并同意
+      </label>
+      <a href="https://static-platform.codemao.cn/agreements/term_of_service.html" data-buried="<%=$data.part%>_链接_协议">《编程猫用户注册协议》</a>
+    </div>
+  <% }%>

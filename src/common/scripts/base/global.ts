@@ -1,18 +1,16 @@
-type gType = {
-  SERVER_INJECTED_DATA:Record<string, any>;
-  ENV:string;
+import { gType } from '@mlz/webui-gulp';
+
+type globalType = gType & {
   apiBase:{
-    host:string;
-    marketing:string;
-    rocketCourse:string;
-    introduce:string;
+    common:string;
     [propName:string]:string;
   };
   hostBase:{
-    mobile:string;
     [propName:string]:string;
   };
-  cdnBase:string;
-}
+  wechat:{
+    appid:string;
+  };
+};
 
-export const G:gType = (window as any).G;
+export const G:globalType = (window as any).G;

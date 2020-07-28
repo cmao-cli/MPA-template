@@ -1,0 +1,8 @@
+<%if ($data.enquiry) {%>
+  <h3 data-buried="<%=$data.part%>_标题">获取课程价格</h3>
+  <h4 data-buried="<%=$data.part%>_描述">已有<span><%=$data.parents%></span>位家长收到课程价格</h4>
+<%} else {%>
+  <h3 data-buried="<%=$data.part%>_标题"><span>免费领取</span>专业试听课</h3>
+  <h4 data-buried="<%=$data.part%>_描述">已有<span><%=$data.parents%></span>人领取专业试听课</h4>
+<%}%>
+<div id="register-form-component-dialog" class="register-form-component"></div>
