@@ -4,19 +4,18 @@ interface XResponse extends Response {
   data:any | void;
 }
 
-export enum ApiHost {
-  host, marketing, rocketCourse, introduce
-}
-
 class API {
   public request:Function;
-  constructor(apiHostName = 'host') {
+  constructor(apiHostName:string) {
     this.request = (url:string, config?:any):Promise<XResponse> => {
       let response:XResponse;
       return new Promise((resolve, reject) => {
         let baseHost = '';
-        if (!(/^http(s)?\/\//).test(url)) {
+        if (!/^http(s)?\/\//.test(url)) {
           baseHost = G.apiBase[apiHostName];
+          if (!baseHost) {
+            throw new Error(`Invalid apiHostName "${apiHostName}"`);
+          }
         }
         fetch(baseHost + url, {
           credentials: 'include',
@@ -24,15 +23,18 @@ class API {
             'content-type': 'application/json;charset=UTF-8',
           },
           ...config,
-        }).then((res) => {
-          response = res as XResponse;
-          return res.text();
-        }).then((data) => {
-          response.data = data ? JSON.parse(data) : null;
-          resolve(response);
-        }).catch((e) => {
-          reject(e);
-        });
+        })
+          .then((res) => {
+            response = res as XResponse;
+            return res.text();
+          })
+          .then((data) => {
+            response.data = data ? JSON.parse(data) : null;
+            resolve(response);
+          })
+          .catch((e) => {
+            reject(e);
+          });
       });
     };
   }
@@ -50,7 +52,4 @@ class API {
   }
 }
 
-export const api = new API();
-export const apiMarketing = new API('marketing');
-export const apiIntroduce = new API('introduce');
-export const apiRocket = new API('rocketCourse');
+export const apiCommon = new API('common');

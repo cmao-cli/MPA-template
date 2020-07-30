@@ -1,0 +1,15 @@
+<h3 data-src="/demo/no-framework/assets/part-4-title-bg.png" data-buried="<%=$data.part%>_标题"></h3>
+<div id="swiper-component-1" class="swiper-component" data-buried="<%=$data.part%>_轮播容器">
+  <div class="swiper-wrapper">
+    <%for (const slide of $data.slides) {%>
+      <div class="swiper-slide" data-buried="<%=$data.part%>_轮播图_<%=slide.name%>">
+        <img data-src="<%=slide.img%>" alt="<%=slide.name%>"/>
+      </div>
+    <%}%>
+  </div>
+</div>
+<ul class="slide-nav">
+  <%$data.slides.forEach((slide, i) => {%>
+    <li data-index="<%=i%>" data-buried="<%=$data.part%>_页码<%=i%>" class="<%=i === 0 ? 'active' : ''%>"><%=slide.name%></li>
+  <%});%>
+</ul>

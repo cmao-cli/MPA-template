@@ -1,0 +1,116 @@
+<!-- extend "~/@mlz/webui-gulp/layouts/base.layout.html" -->
+
+<!-- section "head" -->
+  <%
+  const topBgImgs = {
+    top_title: '/demo/no-framework/assets/part-1-bg.jpg',
+    top_title2: '/demo/no-framework/assets/part-1-bg_1_1.jpg',
+    top_title3: '/demo/no-framework/assets/part-1-bg_1_2.jpg',
+    top_title4: '/demo/no-framework/assets/part-1-bg_banner.jpg',
+    top_title5: '/demo/no-framework/assets/part-1-bg_banner.jpg',
+    top_title6: '/demo/no-framework/assets/part-1-bg_1_5.jpg'
+  };
+  %>
+  <%if (topBgImgs[$data.topBgClass]) {%>
+    <link rel="preload" href="<%=topBgImgs[$data.topBgClass]%>" as="image" />
+  <%}%>
+<!-- /section -->
+
+<!-- section "content" -->
+  <!-- include "/demo/no-framework/scripts/main.css" if="%{{ENV === 'local' ? 'no' : 'yes'}}%" -->
+  <%if ('%{{ENV}}%' === 'local') {%>
+    <link id="main-style" rel="stylesheet" href="/demo/no-framework/scripts/main.css" />
+  <%}%>
+
+  <%=$injectData('serverTime', $data.serverTime)%>
+  <div id="page-containner">
+    <%{ const part = 'part1'%>
+    <div class="part-1 <%=$data.isRefferal ? 'refferal' : ''%>" data-buried="<%=part%>" data-exposure="<%=part%>">
+      <div class="bg <%=$data.topBgClass%>" data-buried="<%=part%>_图片"></div>
+      <div class="form" data-buried="<%=part%>_表单容器">
+        <h3 data-buried="<%=part%>_表单标题"><span>免费领取</span> 价值258元专业试听课</h3>
+        <div id="register-form-component-1" class="register-form-component">
+          <%=require('./components/register-form/index.tpl.html').render()%>
+        </div>
+      </div>
+    </div>
+    <%}%>
+
+    <%{ const part = 'part2'%>
+    <div class="part-2" data-buried="<%=part%>" data-exposure="<%=part%>">
+      <h3 data-buried="<%=part%>_标题" data-src="/demo/no-framework/assets/part-2-title-bg.png">为什么要学编程 ？</h3>
+      <div class="bg" data-src="/demo/no-framework/assets/part-2-bg.jpg"></div>
+    </div>
+    <%}%>
+
+    <%{ const part = 'part3'%>
+    <div class="part-3" data-src="/demo/no-framework/assets/part-3-bg.jpg" data-buried="<%=part%>_图片" data-exposure="<%=part%>"></div>
+    <%}%>
+
+    <%{ const part = 'part4'%>
+    <div class="part-4" data-exposure="<%=part%>" data-src="/demo/no-framework/assets/part-4-bg.jpg">
+      <%=require('./templates/part-4.tpl.html').render({
+        slides: [
+          {name: '定制化教学', img: '/demo/no-framework/assets/part-4-slide-1.png'},
+          {name: '启发式课堂', img: '/demo/no-framework/assets/part-4-slide-2.png'},
+          {name: '强大的师资', img: '/demo/no-framework/assets/part-4-slide-3.png'},
+          {name: '优秀的品牌', img: '/demo/no-framework/assets/part-4-slide-4.png'}
+        ],
+        part: part
+      })%>
+    </div>
+    <%}%>
+
+    <%{ const part = 'part5'%>
+    <div class="part-5" data-exposure="<%=part%>">
+      <%=require('./templates/part-5.tpl.html').render({
+        slides: [
+          {name: '兴趣编程', desc: '图形化编程兴趣课', grade: '5年级及以下', img: '/demo/no-framework/assets/part-5-slide-1.jpg'},
+          {name: '代码编程', desc: 'Python代码编程课', grade: '6年级及以上', img: '/demo/no-framework/assets/part-5-slide-2.jpg'},
+          {name: '硬件编程', desc: '硬件编程课', grade: '4-5年级', img: '/demo/no-framework/assets/part-5-slide-3.jpg'},
+          {name: '数学编程', desc: '数学编程课', grade: '3-6年级', img: '/demo/no-framework/assets/part-5-slide-4.jpg'}
+        ],
+        part: part
+      })%>
+    </div>
+    <%}%>
+
+    <%{ const part = 'part6'%>
+    <div class="part-6 <%=$data.isRefferal ? 'refferal' : ''%>" data-buried="<%=part%>" data-exposure="<%=part%>" data-src="/demo/no-framework/assets/part-6-bg.png">
+      <div class="form" data-buried="<%=part%>_表单容器">
+        <h3 data-buried="<%=part%>_标题"><span>免费领取</span> 价值258元专业试听课</h3>
+        <div id="register-form-component-2" class="register-form-component"></div>
+      </div>
+    </div>
+    <%}%>
+
+    <%{ const part = 'part7'%>
+    <div class="part-7" data-exposure="<%=part%>">
+      <img data-src="/demo/no-framework/assets/part-7-bg.jpg" data-buried="<%=part%>_图片"/>
+    </div>
+    <%}%>
+
+    <%{ const part = '底部悬浮'%>
+    <div class="bottom-float">
+      <button data-buried="<%=part%>_按钮_左">免费预约专业试听课</button>
+      <button data-buried="<%=part%>_按钮_右" data-enquiry>获取课程价格</button>
+    </div>
+    <%}%>
+
+    <%{ const part = '注册弹窗'%>
+    <div id="dialog-component-1" class="dialog-component dialog-form" data-buried="<%= part%>_表单容器">
+      <div class="dialog-wrapper">
+        <button class="dialog-close-btn" data-buried="<%=part%>_关闭按钮"></button>
+        <div class="dialog-content"></div>
+      </div>
+    </div>
+    <%}%>
+  </div>
+<!-- /section -->
+
+<!-- section "script" -->
+  <!-- include "/demo/no-framework/scripts/main.js" if="%{{ENV === 'production' || ENV === 'staging' ? 'yes' : 'no'}}%" -->
+  <script id="main-script" type="text/template" data-src="/demo/no-framework/scripts/main.js"></script>
+  <script data-async data-entry="irisMain" type="text/template" data-src="/common/scripts/iris/main.js"></script>
+  <script data-async data-entry="caMain" type="text/template" data-src="/common/scripts/ca/main.js"></script>
+<!-- /section -->

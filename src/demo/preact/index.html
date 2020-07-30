@@ -1,0 +1,17 @@
+<!-- extend "~@mlz/webui-gulp/layouts/base.layout.html" -->
+
+<!-- section "head" -->
+<!-- /section -->
+
+<!-- section "content" -->
+<!-- include "/demo/preact/scripts/main.css" if="%{{ENV === 'production' || ENV === 'staging' ? 'yes' : 'no'}}%" -->
+<%if ('%{{ENV}}%' === 'local') {%>
+  <link id="main-style" rel="template" href="/demo/preact/scripts/main.css" />
+<%}%>
+<div id="page-containner">Loading...</div>
+<!-- /section -->
+
+<!-- section "script" -->
+<!-- include "/demo/preact/scripts/main.js" if="%{{ENV === 'production' || ENV === 'staging' ? 'yes' : 'no'}}%" -->
+<script id="main-script" type="text/template" src="/demo/preact/scripts/main.js"></script>
+<!-- /section -->

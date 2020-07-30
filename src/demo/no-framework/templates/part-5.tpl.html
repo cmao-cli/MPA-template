@@ -1,0 +1,23 @@
+<h3 data-buried="<%=$data.part%>_标题1" data-src="/demo/no-framework/assets/part-5-title-bg.png">在编程猫孩子能学到什么</h3>
+<h4 data-buried="<%=$data.part%>_标题2">涵盖不同年龄的课程体系</h4>
+<ul class="slide-nav">
+  <%$data.slides.forEach((slide, i) => {%>
+    <li data-index="<%=i%>" class="<%=i === 0 ? 'active' : ''%>" data-buried="<%=$data.part%>_页码<%=i%>"><%=slide.name%></li>
+  <%});%>
+</ul>
+<div id="swiper-component-2" class="swiper-component">
+  <div class="swiper-wrapper" data-buried="<%=$data.part%>_轮播容器">
+    <%for (const slide of $data.slides) {%>
+      <div class="swiper-slide">
+        <div class="slide-content">
+          <img data-src="<%=slide.img%>" data-buried="<%=$data.part%>_轮播图_<%=slide.name%>"/>
+          <div class="slide-desc" data-buried="<%=$data.part%>_轮播描述_slide.desc"><%=slide.desc%> <span>推荐：<%=slide.grade%></span></div>
+          <div class="slide-button">
+            <button data-buried="<%=$data.part%>_按钮_免费预约试听课">免费预约试听课</button>
+            <button data-buried="<%=$data.part%>_按钮_获取课程价格"data-enquiry>获取课程价格</button>
+          </div>
+        </div>
+      </div>
+    <%}%>
+  </div>
+</div>

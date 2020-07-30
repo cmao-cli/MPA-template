@@ -1,0 +1,11 @@
+{
+  "runtime": {
+    "cdnBase": "//static-k12edu.codemao.cn/your-project-name",
+    "apiBase": {
+      "common": "https://backend.codemao.cn"
+    },
+    "hostBase": {
+      "mobile": "https://mobile.codemao.cn"
+    }
+  }
+}
