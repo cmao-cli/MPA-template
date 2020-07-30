@@ -6,6 +6,7 @@
 /build/
 /www/build/
 /config/local.json
+yarn.lock
 *~
 
 

@@ -1,2 +1,2 @@
-import 'core-js/es/promise';
+import 'core-js';
 import 'whatwg-fetch';
