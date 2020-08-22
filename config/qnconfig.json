@@ -1,9 +1,0 @@
-{
-  "src_dir": "",
-  "bucket": "",
-  "key_prefix": "",
-  "skip_suffixes": ".map",
-  "rescan_local": true,
-  "log_stdout": true,
-  "check_exists": true
-}

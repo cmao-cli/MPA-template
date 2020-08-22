@@ -1,6 +1,6 @@
 {
   "runtime": {
-    "cdnBase": "//static-k12edu.codemao.cn/your-project-name",
+    "cdnBase": "//platform.codemao.cn/platform-informatization/2/hra-assist",
     "apiBase": {
       "common": "https://backend-dev.codemao.cn"
     },
