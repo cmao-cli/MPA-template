@@ -25,7 +25,7 @@
     "cookie-parser": "^1.4.4",
     "core-js": "^2.6.11",
     "express": "^4.17.1",
-    "lodash-es": "^4.17.15",
+    "lodash-es": "^4.17.21",
     "preact": "^10.2.1",
     "preact-router": "^3.2.1",
     "unistore": "^3.5.1",
